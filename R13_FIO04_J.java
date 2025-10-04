@@ -1,5 +1,6 @@
 void readFile(Path p) throws IOException {
-    BufferedReader br = Files.newBufferedReader(p);
-    String line = br.readLine();
-    // ... may exit early, never closes br
+    try (BufferedReader br = Files.newBufferedReader(p)) {
+        String line = br.readLine();
+        // use line...
+    } // auto-closed
 }
