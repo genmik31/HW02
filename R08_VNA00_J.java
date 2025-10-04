@@ -1,5 +1,5 @@
 class Worker {
-    static boolean done = false;
+    static volatile boolean done = false; // ensure visibility across threads
 
     static void spin() {
         while (!done) {
