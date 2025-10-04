@@ -1,3 +1,8 @@
 ObjectInputStream ois =
     new ObjectInputStream(socket.getInputStream());
-Object obj = ois.readObject();   // accepts untrusted data blindly
+// validate/whitelist types before use (e.g., filter or manual check)
+Object obj = ois.readObject();
+if (!(obj instanceof AllowedType)) {
+    throw new InvalidObjectException("disallowed type");
+}
+// safe to use after validation
