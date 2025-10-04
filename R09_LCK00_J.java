@@ -1,8 +1,9 @@
 class Counter {
+    private final Object lock = new Object();
     private int value;
 
     public void inc() {
-        synchronized (this) {        // locking on this (publicly accessible)
+        synchronized (lock) {        // private final lock object
             value++;
         }
     }
